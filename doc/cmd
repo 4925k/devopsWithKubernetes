@@ -1,0 +1,28 @@
+## k3d
+
+### create a cluster
+```k3d cluster create -a 2```
+
+### start a cluster
+```k3d cluster start```
+
+### stop a cluster
+```k3d cluster stop```
+
+
+## kubectl
+
+### get cluster info
+```kubectl cluster-info```
+
+### explain componenets of kubernetes
+```kubectl explain <component>```
+
+### get a resource
+```kubectl get <resource_name>```
+
+### get deployments list
+```kubectl get deployments```
+
+### create deployment 
+```kubectl create deployment <name> --image=<image-name>```
