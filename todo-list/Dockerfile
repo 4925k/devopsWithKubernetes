@@ -4,8 +4,8 @@ WORKDIR /todo
 
 COPY . .
 
-ENV PORT="4000"
+ENV PORT="3000"
 
-RUN go build -o todolist .
+RUN go build -o todolist ./cmd/todolist
 
 CMD [ "./todolist" ]

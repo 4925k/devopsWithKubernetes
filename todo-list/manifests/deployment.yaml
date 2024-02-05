@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: todolist
-          image: 4925k/todolist
+          image: 4925k/todolist:v1.0

@@ -11,15 +11,14 @@ type config struct {
 	port string
 }
 
-type application struct {
-}
+type application struct{}
 
 func main() {
 	cfg := config{
 		port: os.Getenv("PORT"),
 	}
-	var app application
 
+	var app application
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", cfg.port),
 		Handler: app.routes(),
@@ -30,14 +29,4 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-}
-
-func (app *application) routes() *http.ServeMux {
-	r := http.NewServeMux()
-
-	r.Handle("/hello-world", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello user"))
-	}))
-
-	return r
 }
