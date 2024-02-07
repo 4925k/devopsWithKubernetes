@@ -1,18 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hash-gen
+  name: pingpong
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hash-gen
+      app: pingpong
   template:
     metadata:
       labels:
-        app: hash-gen
+        app: pingpong
     spec:
       containers:
-        - name: hash-gen
-          image: 4925k/hash-gen:v1
-
+        - name: pingpong
+          image: 4925k/pingpong:v1

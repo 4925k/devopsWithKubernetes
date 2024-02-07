@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todolist-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: todolist
+            port: 
+              number: 2345
+  - http:
+      paths:
+      - path: /status
+        pathType: Prefix
+        backend:
+          service:
+            name: hash-gen
+            port:
+              number: 2346

@@ -1,0 +1,9 @@
+FROM golang:alpine
+
+WORKDIR /pingpong
+
+COPY . .
+
+RUN go build -o pingpong .
+
+CMD ["./pingpong"]
