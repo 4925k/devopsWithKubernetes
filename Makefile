@@ -1,9 +1,19 @@
 # start k3d cluster
-start:
-	k3d cluster create -p 8081:80@loadbalancer --agents 2
-	kubectl apply -f ./hash-gen/manifests
-	kubectl apply -f ./pingpong/manifests
+# hash -> listening @localhost:4444/hash/status
+# pingpong -> listening @locahost:4445/pingpong
+# image -> localhost
 
+# kubectl apply -f ./image/manifests
+# kubectl apply -f ./pingpong/manifests
+create:
+	k3d cluster create -p 8081:80@loadbalancer --agents 2
+	kubectl apply -f ./manifests
+
+apply: 
+	kubectl apply -f ./manifests
+
+remove: 
+	kubectl delete -f ./manifests
 stats:
 	kubectl get deployments
 	kubectl get pods 

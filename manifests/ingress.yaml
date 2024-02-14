@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hash-gen-ingress
+  name: hash-ingress
 spec:
   rules:
   - http:
@@ -10,7 +10,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: hash-gen
+            name: hash
             port:
               number: 2346
       - path: /pingpong
@@ -20,3 +20,10 @@ spec:
             name: pingpong
             port: 
               number: 2347
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: images-svc
+            port:
+              number: 2344

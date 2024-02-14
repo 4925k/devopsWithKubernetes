@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"io/fs"
 	"log"
 	"net/http"
+	"os"
 )
 
 var counter int
@@ -28,6 +30,9 @@ func routes() *http.ServeMux {
 	r.Handle("/pingpong", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		counter++
 		out := fmt.Sprintf("pong %d", counter)
+
+		os.WriteFile("/usr/src/app/files/pingpong.txt", []byte(out), fs.FileMode(os.O_CREATE))
+
 		w.Write([]byte(out))
 	}))
 
