@@ -10,7 +10,9 @@ import (
 
 const (
 	RANDOMIMAGEURL     = "https://picsum.photos/1200"
-	DAILYIMAGEFILEPATH = "/usr/src/app/files/daily-image.jpg"
+	DAILYIMAGEFILEPATH = "/Users/dibek/Desktop/devopsWithKubernetes/todo-list/ui/static/img/daily-image.jpg"
+	// DAILYIMAGEFILEPATH = "/usr/src/app/files/daily-image.jpg"
+
 )
 
 // getDailyImage fetches the daily image to be displayed
@@ -54,7 +56,7 @@ func fileExists(path string) bool {
 
 	// CUSTOME RULE
 	// checking if file was created within the last 24 hours
-	if f.ModTime().After(time.Now().Add(-24 * time.Hour)) {
+	if !f.ModTime().After(time.Now().Add(-24 * time.Hour)) {
 		return false
 	}
 

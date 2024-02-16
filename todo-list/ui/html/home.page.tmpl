@@ -1,0 +1,16 @@
+{{template "base" .}}
+
+{{define "title"}}Home{{end}}
+
+{{define "body"}}
+    <h2>Create Todolist</h2>
+    <form action="/v1/list/create">
+        <input type="text" id="todo" name="todo">
+        <input type="submit" value="create TODO">
+    </form>
+    <ul>
+        <li>Todo 1</li>
+        <li>Todo 2</li>
+        <li>Todo 3</li>
+    </ul>
+{{end}}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -12,7 +13,9 @@ type config struct {
 	port string
 }
 
-type application struct{}
+type application struct {
+	templateCache map[string]*template.Template
+}
 
 func main() {
 	// GET APPLICATION CONFIG
@@ -30,8 +33,16 @@ func main() {
 		}
 	}()
 
+	// TEMPLATE CACHE
+	templateCache, err := newTemplateCache("/Users/dibek/Desktop/devopsWithKubernetes/todo-list/ui/html/")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// CREATE SERVER
-	var app application
+	app := &application{
+		templateCache: templateCache,
+	}
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", cfg.port),
 		Handler: app.routes(),
@@ -39,7 +50,7 @@ func main() {
 
 	// START SERVER
 	log.Printf("server started on %v\n", srv.Addr)
-	err := srv.ListenAndServe()
+	err = srv.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
 	}
