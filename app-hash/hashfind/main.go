@@ -32,6 +32,7 @@ func routes() *http.ServeMux {
 
 }
 
+// getHash will get the current hash and pingpong status from the current shared file
 func getHash(w http.ResponseWriter, r *http.Request) {
 	// GET HASH
 	f, err := os.OpenFile("/usr/src/app/files/hash.txt", os.O_RDONLY, 0644)
@@ -47,19 +48,35 @@ func getHash(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// GET PONG
-	f2, err := os.OpenFile("/usr/src/app/files/pingpong.txt", os.O_RDONLY, 0644)
+
+	// from file
+	// f2, err := os.OpenFile("/usr/src/app/files/pingpong.txt", os.O_RDONLY, 0644)
+	// if err != nil {
+	// 	w.Write([]byte(err.Error()))
+	// 	return
+	// }
+
+	// b2, err := io.ReadAll(f2)
+	// if err != nil {
+	// 	w.Write([]byte(err.Error()))
+	// 	return
+	// }
+
+	// from endpoint
+	pp, err := http.Get("http://pingpong:2347/pingpong")
+	if err != nil {
+		w.Write([]byte(err.Error()))
+		return
+	}
+	defer pp.Body.Close()
+
+	ppbd, err := io.ReadAll(pp.Body)
 	if err != nil {
 		w.Write([]byte(err.Error()))
 		return
 	}
 
-	b2, err := io.ReadAll(f2)
-	if err != nil {
-		w.Write([]byte(err.Error()))
-		return
-	}
-
-	bd = append(bd, b2...)
+	bd = append(bd, ppbd...)
 
 	w.Write(bd)
 }
