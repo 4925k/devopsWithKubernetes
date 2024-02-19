@@ -1,0 +1,31 @@
+## hashgen
+
+## hashfind
+application port: 4444
+endpoint: 
+- /hash/status
+kubeaddress: hash
+kubeport: 2346
+
+## pingpong
+application port:4445
+endpoint:
+- /pingpong
+kubeaddress: pingpong
+kubeport: 2347
+
+## todolistfe
+application port: 3000 (from env)
+endpoint: 
+- /
+- /hash/get
+kubeaddress: todolistfe
+kubeport: 2345
+
+## todolistbe
+application port: 30001
+endpoint:
+- GET /todos
+- POST /todos
+kubeaddress: todolistbe
+kubeport: 2344

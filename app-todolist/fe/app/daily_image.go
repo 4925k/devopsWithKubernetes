@@ -10,9 +10,8 @@ import (
 
 const (
 	RANDOMIMAGEURL     = "https://picsum.photos/1200"
-	DAILYIMAGEFILEPATH = "/Users/dibek/Desktop/devopsWithKubernetes/todo-list/ui/static/img/daily-image.jpg"
+	DAILYIMAGEFILEPATH = "./ui/static/img/daily-image.jpg"
 	// DAILYIMAGEFILEPATH = "/usr/src/app/files/daily-image.jpg"
-
 )
 
 // getDailyImage fetches the daily image to be displayed

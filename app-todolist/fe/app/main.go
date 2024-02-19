@@ -34,7 +34,7 @@ func main() {
 	}()
 
 	// TEMPLATE CACHE
-	templateCache, err := newTemplateCache("/Users/dibek/Desktop/devopsWithKubernetes/todo-list/ui/html/")
+	templateCache, err := newTemplateCache("./ui/html/")
 	if err != nil {
 		log.Fatal(err)
 	}
