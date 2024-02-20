@@ -23,7 +23,7 @@ kubeaddress: todolistfe
 kubeport: 2345
 
 ## todolistbe
-application port: 30001
+application port: 3001
 endpoint:
 - GET /todos
 - POST /todos

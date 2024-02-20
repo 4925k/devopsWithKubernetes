@@ -11,6 +11,7 @@ func (app *application) routes() *http.ServeMux {
 	}))
 
 	r.HandleFunc("/hash/get", app.hashHandler)
+	r.HandleFunc("POST /todos/create", app.createTodo)
 
 	fs := http.FileServer(http.Dir("./ui/static"))
 	r.Handle("/static/", http.StripPrefix("/static", fs))

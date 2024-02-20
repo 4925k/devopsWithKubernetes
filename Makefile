@@ -32,3 +32,7 @@ down:
 dockerhashfind:
 	docker build -t 4925k/hashfind:v1 ./app-hash/hashfind/
 	docker push 4925k/hashfind:v1
+
+dockertodolistfe:
+	docker build -t 4925k/todolistfe:v1 ./app-todolist/fe
+	docker push 4925k/todolistfe:v1

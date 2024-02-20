@@ -13,6 +13,20 @@ spec:
             name: todolistfe
             port: 
               number: 2345
+      - path: /todos/create
+        pathType: Prefix
+        backend:
+          service:
+            name: todolistfe
+            port: 
+              number: 2345
+      - path: /todos
+        pathType: Prefix
+        backend:
+          service:
+            name: todolistbe
+            port:
+              number: 2344
       - path: /hash/status
         pathType: Prefix
         backend:
