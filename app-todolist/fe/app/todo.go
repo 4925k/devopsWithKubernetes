@@ -10,8 +10,6 @@ import (
 )
 
 func (app *application) createTodo(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("here")
-
 	err := r.ParseForm()
 	if err != nil {
 		w.Write([]byte(err.Error()))
@@ -27,8 +25,6 @@ func (app *application) createTodo(w http.ResponseWriter, r *http.Request) {
 		return
 
 	}
-
-	fmt.Println(string(bd))
 
 	res, err := http.Post("http://todolistbe:2344/todos", "application/json", bytes.NewBuffer(bd))
 	// res, err := http.Post("http://localhost:3001/todos", "application/json", bytes.NewBuffer(bd))
@@ -46,7 +42,29 @@ func (app *application) createTodo(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println("response", string(resBD))
-	fmt.Println("done")
-
 	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
+
+func (app *application) getAllTodo() []string {
+	res, err := http.Get("http://todolistbe:2344/todos")
+	if err != nil {
+		log.Println(err)
+		return nil
+	}
+	defer res.Body.Close()
+
+	bd, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Println(err)
+		return nil
+	}
+
+	var todos []string
+	err = json.Unmarshal(bd, &todos)
+	if err != nil {
+		log.Println(err)
+		return nil
+	}
+
+	return todos
 }

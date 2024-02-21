@@ -7,6 +7,7 @@ import (
 )
 
 type templateData struct {
+	Todos []string
 }
 
 var functions = template.FuncMap{

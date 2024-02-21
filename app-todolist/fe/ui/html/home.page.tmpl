@@ -8,9 +8,11 @@
         <input type="text" id="todo" name="todo">
         <input type="submit" value="create TODO">
     </form>
+    {{ if .Todos}}
     <ul>
-        <li>Todo 1</li>
-        <li>Todo 2</li>
-        <li>Todo 3</li>
+        {{ range .Todos}}
+            <li>{{.}}</li>
+        {{ end }}
     </ul>
+    {{ end }}
 {{end}}
