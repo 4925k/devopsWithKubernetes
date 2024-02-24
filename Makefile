@@ -32,7 +32,7 @@ down:
 ### DOCKER COMMANDS
 
 dockerhashfind:
-	docker build -t 4925k/hashfind:v1 ./app-hash/hashfind/
+	docker build -t 4925k/hashfind:v1 ./app-hash/hashfind
 	docker push 4925k/hashfind:v1
 
 dockertodolistfe:

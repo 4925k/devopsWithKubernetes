@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todolistbe
-  namespace: ns-mainproject
+  # namespace: ns-mainproject
 spec:
   replicas: 1
   selector:

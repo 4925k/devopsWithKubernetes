@@ -6,13 +6,6 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: todolistfe
-            port: 
-              number: 2345
       - path: /todos/create
         pathType: Prefix
         backend:
@@ -41,4 +34,11 @@ spec:
             name: pingpong
             port: 
               number: 2347
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: todolistfe
+            port: 
+              number: 2345
           

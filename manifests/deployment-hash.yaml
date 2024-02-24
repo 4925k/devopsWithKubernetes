@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hash
-  namespace: ns-sideproject
+  # namespace: ns-sideproject
 spec:
   replicas: 1
   selector:
@@ -21,6 +21,12 @@ spec:
       containers:
         - name: hashfind
           image: 4925k/hashfind:v1
+          env:
+            - name: GREET
+              valueFrom:
+                configMapKeyRef:
+                  name: hash-data
+                  key: greet
           volumeMounts:
             - name: shared-hash
               mountPath: /usr/src/app/files

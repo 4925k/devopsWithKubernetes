@@ -78,5 +78,12 @@ func getHash(w http.ResponseWriter, r *http.Request) {
 
 	bd = append(bd, ppbd...)
 
+	greet := os.Getenv("GREET")
+	if greet == "" {
+		greet = "env empty"
+	}
+
+	bd = append(bd, []byte(greet)...)
+
 	w.Write(bd)
 }

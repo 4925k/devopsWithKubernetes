@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pingpong
-  namespace: ns-sideproject
+  # namespace: ns-sideproject
 spec:
   replicas: 1
   selector:
