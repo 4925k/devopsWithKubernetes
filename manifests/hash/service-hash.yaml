@@ -1,0 +1,29 @@
+# this is to use along with ingress
+apiVersion: v1 
+kind: Service
+metadata:
+  name: hash
+spec:
+  type: ClusterIP
+  selector: 
+    app: hash
+  ports:
+    - port: 2346
+      protocol: TCP
+      targetPort: 4444
+
+## using NodePort
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: hash-gen
+# spec:
+#   type: NodePort
+#   selector:
+#     app: hash-gen
+#   ports:
+#     - name: http
+#       nodePort: 30080
+#       protocol: TCP
+#       port: 1234
+#       targetPort: 4444

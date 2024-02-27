@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hash-data
+data:
+  greet: "hello from ConfigMap"

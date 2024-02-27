@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolistbe
+  # namespace: ns-mainproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todolistbe
+  template:
+    metadata:
+      labels:
+        app: todolistbe
+    spec:
+      containers:
+        - name: todolistbe
+          image: 4925k/todolistbe:v1
