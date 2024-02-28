@@ -9,10 +9,20 @@ create:
 	k3d cluster create -p 8081:80@loadbalancer --agents 2
 	kubectl create namespace ns-sideproject
 	kubectl create namespace ns-mainproject
-	kubectl apply -f ./manifests
+	kubectl apply -f ./manifests/
+	kubectl apply -f ./manifests/hash
+	kubectl apply -f ./manifests/pingpong
+	kubectl apply -f ./manifests/postgres
+	kubectl apply -f ./manifests/todolist
+	
+
 
 apply: 
-	kubectl apply -f ./manifests
+	kubectl apply -f ./manifests/
+	kubectl apply -f ./manifests/hash
+	kubectl apply -f ./manifests/pingpong
+	kubectl apply -f ./manifests/postgres
+	kubectl apply -f ./manifests/todolist
 
 remove: 
 	kubectl delete -f ./manifests
