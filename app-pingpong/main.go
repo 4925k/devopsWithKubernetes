@@ -1,47 +1,48 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
-	"io/fs"
 	"log"
 	"net/http"
-	"os"
+
+	_ "github.com/lib/pq"
 )
 
-var counter int
+var (
+	db  *sql.DB
+	err error
+)
 
 func main() {
+	connStr := "user=postgres dbname=postgres password=mysecretpassword sslmode=disable"
+
+	log.Print("here")
+	// database
+	db, err = sql.Open("postgres", connStr)
+	if err != nil {
+		panic(err)
+	}
+
+	err := db.Ping()
+	if err != nil {
+		panic(err)
+	}
+
+	// setPingpongTable()
+
+	log.Print("table setup completed")
+
+	// server
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", "4445"),
 		Handler: routes(),
 	}
 
-	err := srv.ListenAndServe()
+	err = srv.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Printf("pingpong started on %s", srv.Addr)
-}
-
-func routes() *http.ServeMux {
-	r := http.NewServeMux()
-
-	// pingpong keeps a counter to the number of times
-	// this endpoint has been called
-	r.Handle("/pingpong", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// increase counter
-		counter++
-
-		// prep output
-		out := fmt.Sprintf("pong %d", counter)
-
-		// write to file
-		os.WriteFile("/usr/src/app/files/pingpong.txt", []byte(out), fs.FileMode(os.O_CREATE))
-
-		// send back to client
-		w.Write([]byte(out))
-	}))
-
-	return r
 }
