@@ -5,7 +5,10 @@
 
 # kubectl apply -f ./image/manifests
 # kubectl apply -f ./pingpong/manifests
-create:
+create: 
+	k3d cluster create -p 8081:80@loadbalancer --agents 2
+
+setup:
 	k3d cluster create -p 8081:80@loadbalancer --agents 2
 	kubectl create namespace ns-sideproject
 	kubectl create namespace ns-mainproject
