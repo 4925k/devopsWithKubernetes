@@ -51,6 +51,10 @@ dockertodolistfe:
 	docker build -t 4925k/todolistfe:v1 ./app-todolist/fe
 	docker push 4925k/todolistfe:v1
 
+dockertodolistbe:
+	docker build -t 4925k/todolistbe:v1 ./app-todolist/be
+	docker push 4925k/todolistbe:v1
+
 dockerpingpong:
 	docker build -t 4925k/pingpong:v1 ./app-pingpong
 	docker push 4925k/pingpong:v1

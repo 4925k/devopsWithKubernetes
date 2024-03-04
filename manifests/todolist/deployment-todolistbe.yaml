@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todolistbe
-  # namespace: ns-mainproject
 spec:
   replicas: 1
   selector:
@@ -16,3 +15,6 @@ spec:
       containers:
         - name: todolistbe
           image: 4925k/todolistbe:v1
+          imagePullPolicy: "Always"
+        - name: todolistdb
+          image: postgres:16.2
