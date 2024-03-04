@@ -10,13 +10,12 @@ create:
 
 setup:
 	k3d cluster create -p 8081:80@loadbalancer --agents 2
-	kubectl create namespace ns-sideproject
-	kubectl create namespace ns-mainproject
 	kubectl apply -f ./manifests/
 	kubectl apply -f ./manifests/hash
 	kubectl apply -f ./manifests/pingpong
 	kubectl apply -f ./manifests/postgres
 	kubectl apply -f ./manifests/todolist
+	kubectl apply -f ./manifests/ubuntu
 	
 
 
@@ -51,3 +50,7 @@ dockerhashfind:
 dockertodolistfe:
 	docker build -t 4925k/todolistfe:v1 ./app-todolist/fe
 	docker push 4925k/todolistfe:v1
+
+dockerpingpong:
+	docker build -t 4925k/pingpong:v1 ./app-pingpong
+	docker push 4925k/pingpong:v1

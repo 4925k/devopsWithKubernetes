@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	_ "github.com/lib/pq"
 )
@@ -15,13 +16,19 @@ var (
 )
 
 func main() {
-	connStr := "user=postgres dbname=postgres password=mysecretpassword sslmode=disable"
+	connStr := "host=postgres user=postgres dbname=postgres password=admin sslmode=disable"
 
 	log.Print("here")
 	// database
-	db, err = sql.Open("postgres", connStr)
-	if err != nil {
-		panic(err)
+	for {
+		db, err = sql.Open("postgres", connStr)
+		if err != nil {
+			log.Println("no connection", err)
+			time.Sleep(20 * time.Second)
+			continue
+		}
+
+		break
 	}
 
 	err := db.Ping()
