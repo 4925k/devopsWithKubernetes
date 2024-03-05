@@ -16,5 +16,3 @@ spec:
         - name: todolistbe
           image: 4925k/todolistbe:v1
           imagePullPolicy: "Always"
-        - name: todolistdb
-          image: postgres:16.2

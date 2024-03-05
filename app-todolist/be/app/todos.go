@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -21,12 +22,28 @@ func createTodo(w http.ResponseWriter, r *http.Request) {
 
 	todolist = append(todolist, input.Todo)
 
+	stmt := `INSERT INTO todolist (description) VALUES ($1)`
+
+	_, err = db.Exec(stmt, input.Todo)
+	if err != nil {
+		log.Println(err)
+		w.Write([]byte("database error"))
+		return
+	}
+
 	out := fmt.Sprintf("todo created: %s", input.Todo)
 	w.Write([]byte(out))
 }
 
 func getAllTodo(w http.ResponseWriter, r *http.Request) {
-	out, err := json.Marshal(todolist)
+	todos, err := GetAllTodo()
+	if err != nil {
+		w.Write([]byte("database error"))
+		log.Println(err)
+		return
+	}
+
+	out, err := json.Marshal(todos)
 	if err != nil {
 		w.Write([]byte("internal server error"))
 		return
