@@ -1,0 +1,11 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: backup
+spec: 
+  template:
+    spec:
+      containers:
+      - name: daily-read
+        image: 4925k/todolist-daily
+      restartPolicy: Never

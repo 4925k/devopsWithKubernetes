@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: todolist-daily
+spec:
+  schedule: "0 9 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: todolist-daily
+            image: 4925k/todolist-daily
+            imagePullPolicy: Always
+          restartPolicy: OnFailure
+

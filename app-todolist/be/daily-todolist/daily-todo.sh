@@ -1,9 +1,9 @@
-#/bin/bash
+#!/bin/sh
 
 # install curl and psql
-apt update
-apt install -y curl
-apt install -y postgresql-client
+apk update
+apk add curl
+apk add postgresql-client
 
 # get daily url to read
 postgres_url="postgres://postgres:admin@postgres?sslmode=disable"
