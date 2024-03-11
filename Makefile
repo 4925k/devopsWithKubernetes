@@ -17,7 +17,23 @@ setup:
 	kubectl apply -f ./manifests/todolist
 	kubectl apply -f ./manifests/ubuntu
 	
+helm: 
+	brew install helm
+	helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+	helm repo add stable https://charts.helm.sh/stable
 
+
+prometheus:
+	kubectl create namespace prometheus
+	helm install prometheus-community/kube-prometheus-stack --generate-name --namespace prometheus
+
+
+loki:
+	helm repo add grafana https://grafana.github.io/helm-charts
+	helm repo update
+	kubectl create namespace loki-stack
+	helm upgrade --install loki --namespace=loki-stack grafana/loki-stack
+	
 
 apply: 
 	kubectl apply -f ./manifests/
@@ -58,3 +74,15 @@ dockertodolistbe:
 dockerpingpong:
 	docker build -t 4925k/pingpong:v1 ./app-pingpong
 	docker push 4925k/pingpong:v1
+
+grafana:
+	brew install helm
+	helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+	helm repo add stable https://charts.helm.sh/stable
+	kubectl create namespace logging
+	helm install prometheus-community/kube-prometheus-stack --generate-name --namespace logging
+	helm repo add grafana https://grafana.github.io/helm-charts
+	helm repo update
+	helm upgrade --install loki --namespace=logging grafana/loki-stack
+	kubectl get pods -n logging
+	echo "kubectl -n logging port-forward <grafana pod> 3000"
