@@ -49,8 +49,11 @@ reapply: remove
 	kubectl apply -f ./manifests
 
 stats:
+	kubectl get pv
+	kubectl get pvc
 	kubectl get deployments
 	kubectl get pods 
+	
 
 down:
 	k3d cluster delete

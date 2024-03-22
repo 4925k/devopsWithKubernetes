@@ -1,7 +1,7 @@
 
 ## VARIABLES
-CLUSTER_NAME="dwk-gke"
-CLUSTER_ZONE="europe-north1-b"
+export CLUSTER_NAME="dwk-gke"
+export CLUSTER_ZONE="asia-south2-a"
 
 
 # login to gcp account

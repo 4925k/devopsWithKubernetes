@@ -36,7 +36,9 @@ func main() {
 		panic(err)
 	}
 
-	// setPingpongTable()
+	log.Print("table setup commencing")
+
+	setPingpongTable()
 
 	log.Print("table setup completed")
 

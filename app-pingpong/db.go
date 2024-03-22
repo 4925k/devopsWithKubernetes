@@ -16,12 +16,18 @@ func setPingpongTable() {
 		log.Fatal(err)
 	}
 
-	stmt = `INSERT INTO pingpong (endpoint, count) VALUES ("pingpong", 0); `
+	log.Println("pingpong table created")
+
+	log.Println("adding endpoint")
+
+	stmt = `INSERT INTO pingpong (endpoint, count) VALUES ('pingpong', 0); `
 
 	_, err = db.Exec(stmt)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	log.Println("endpoint entry added")
 
 }
 
