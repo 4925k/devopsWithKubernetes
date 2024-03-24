@@ -1,5 +1,5 @@
 
-export CLUSTER_NApostgreME:="dwk-gke"
+export CLUSTER_NAME:="dwk-gke"
 export CLUSTER_ZONE:="asia-south2-a"
 
 create:
@@ -33,7 +33,19 @@ ppwithdbrm:
 	kubectl delete  -f manifests/pingpong
 	kubectl delete -f manifests/postgres
 
+all:
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes-hy/material-example/e11a700350aede132b62d3b5fd63c05d6b976394/app6/manifests/deployment.yaml
+	kubectl apply -f manifests/seed-image
+	kubectl apply -f manifests/postgres
+	kubectl apply -f manifests/pingpong
+	kubectl apply -f manifests
 
+allrm:
+	kubectl delete -f https://raw.githubusercontent.com/kubernetes-hy/material-example/e11a700350aede132b62d3b5fd63c05d6b976394/app6/manifests/deployment.yaml
+	kubectl delete -f manifests/seed-image
+	kubectl delete -f manifests/postgres
+	kubectl delete -f manifests/pingpong
+	kubectl delete -f manifests
 
 stats:
 	kubectl get pv

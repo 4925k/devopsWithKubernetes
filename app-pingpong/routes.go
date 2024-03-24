@@ -11,6 +11,10 @@ import (
 func routes() *http.ServeMux {
 	r := http.NewServeMux()
 
+	r.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("hello from pingpoing home page"))
+	}))
+
 	// pingpong keeps a counter to the number of times
 	// this endpoint has been called
 	r.Handle("/pingpong", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
