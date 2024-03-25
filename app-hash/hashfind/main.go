@@ -26,6 +26,9 @@ func main() {
 func routes() *http.ServeMux {
 	r := http.NewServeMux()
 
+	r.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("hash finder app"))
+	}))
 	r.HandleFunc("/hash/status", getHash)
 
 	return r
@@ -63,7 +66,7 @@ func getHash(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	// from endpoint
-	pp, err := http.Get("http://pingpong:2347/pingpong")
+	pp, err := http.Get("http://pingpong-svc:2347/pingpong")
 	if err != nil {
 		w.Write([]byte(err.Error()))
 		return

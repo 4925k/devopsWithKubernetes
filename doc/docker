@@ -1,0 +1,1 @@
+docker buildx build --push --tag [docker-hubid/image-tag] --platform=linux/arm64,linux/amd64 .

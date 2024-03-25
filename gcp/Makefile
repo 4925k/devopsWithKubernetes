@@ -34,9 +34,9 @@ ppwithdbrm:
 	kubectl delete -f manifests/postgres
 
 all:
+	kubectl apply -f manifests/postgres
 	kubectl apply -f https://raw.githubusercontent.com/kubernetes-hy/material-example/e11a700350aede132b62d3b5fd63c05d6b976394/app6/manifests/deployment.yaml
 	kubectl apply -f manifests/seed-image
-	kubectl apply -f manifests/postgres
 	kubectl apply -f manifests/pingpong
 	kubectl apply -f manifests
 
