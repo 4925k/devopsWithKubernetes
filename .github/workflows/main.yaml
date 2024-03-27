@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
         with:
-          workload_identity_provider: 'projects/1027301796219/locations/global/workloadIdentityPools/github'
+          workload_identity_provider: 'projects/1027301796219/locations/global/workloadIdentityPools/github/providers/my-repo/github'
           service_account: 'github-actions@dwk-gke-417116.iam.gserviceaccount.com'
 
 
