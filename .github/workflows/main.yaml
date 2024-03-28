@@ -5,8 +5,8 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: dwk-cluster
-  GKE-ZONE: asia-south2-a
+  GKECLUSTER: dwk-gke
+  GKEZONE: asia-south2-a
   IMAGE: dwk-environments
 
 jobs: 
@@ -39,7 +39,7 @@ jobs:
       
       - run: gcloud --quiet auth configure-docker
 
-      - run : gcloud container clusters get-credentials "$GKE_CLUSTER" --zone="$GKE_ZONE"
+      - run : gcloud container clusters get-credentials $GKECLUSTER --zone=$GKEZONE
 
       - name: Build
         run: |-
