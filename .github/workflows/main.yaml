@@ -24,8 +24,10 @@ jobs:
       - id: 'auth'
         uses: 'google-github-actions/auth@v2'
         with:
-          workload_identity_provider: 'projects/1027301796219/locations/global/workloadIdentityPools/github/providers/my-repo/github'
-          service_account: 'github-actions@dwk-gke-417116.iam.gserviceaccount.com'
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}' # Replace with the name of your GitHub Actions secret
+          # project_id:  ${{ secrets.GKE_PROJECT }}
+          # workload_identity_provider: 'projects/1027301796219/locations/global/workloadIdentityPools/github/providers/my-repo/github'
+          # service_account: 'github-actions@dwk-gke-417116.iam.gserviceaccount.com'
 
 
       - name: Set up Cloud SDK
