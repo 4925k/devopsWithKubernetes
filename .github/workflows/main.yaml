@@ -45,12 +45,12 @@ jobs:
       - name: Build
         run: |-
            docker build \
-           --tag 4925k/hash \
+           --tag 4925k/nginx-basic \
            .
 
       - name: Publish
         run: |-
-            docker push "4925k/hash
+            docker push "4925k/nginx-basic"
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
