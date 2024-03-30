@@ -37,6 +37,7 @@ jobs:
           service_account_key: ${{ secrets.GKE_SA_KEY }}
           export_default_credentials: true
       
+      - run: gcloud components install gke-gcloud-auth-plugin
       - run: gcloud --quiet auth configure-docker
 
       - run : gcloud container clusters get-credentials $GKECLUSTER --zone=$GKEZONE
@@ -44,12 +45,12 @@ jobs:
       - name: Build
         run: |-
            docker build \
-           --tag "gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA" \
+           --tag 4925k/hash \
            .
 
       - name: Publish
         run: |-
-            docker push "gcr.io/$PROJECT_ID/$IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+            docker push "4925k/hash
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
